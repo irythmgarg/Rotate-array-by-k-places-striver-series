@@ -1,0 +1,172 @@
+Theory
+Problem Statement:
+Rotate a given array nums of size n to the right by k steps.
+
+Example:
+Input: nums = [1, 2, 3, 4, 5, 6, 7], k = 3
+Output: [5, 6, 7, 1, 2, 3, 4]
+Approach:
+
+The problem can be solved using the reverse approach:
+Reverse the entire array.
+Reverse the first k elements.
+Reverse the remaining 𝑛−𝑘
+n−k elements.
+This rearrangement achieves the desired rotation efficiently.
+Key Insight:
+
+Rotating an array 𝑘
+k steps to the right is equivalent to moving the last 𝑘
+k elements to the front while maintaining their order.
+Complexity:
+
+Time Complexity: 
+𝑂(𝑛)
+O(n), where 
+𝑛
+n is the size of the array, as reversing the array takes linear time.
+Space Complexity: 
+𝑂(1)
+O(1), since the rotation is performed in-place without extra memory.
+Edge Cases:𝑘=0
+k=0: No rotation; the array remains unchanged.
+𝑘≥𝑛
+k≥n: Rotation repeats after 
+n steps, so use 𝑘%𝑛
+k%n to avoid unnecessary operations.
+Single-element or empty arrays: The array remains unchanged.
+
+
+
+Below is the detailed explanation and commented version of the provided code to rotate an array to the right by 
+𝑘
+k steps, along with its theory and algorithm.
+
+Theory
+Problem Statement:
+Rotate a given array nums of size 
+𝑛
+n to the right by 
+𝑘
+k steps.
+
+Example:
+Input: nums = [1, 2, 3, 4, 5, 6, 7], k = 3
+Output: [5, 6, 7, 1, 2, 3, 4]
+Approach:
+
+The problem can be solved using the reverse approach:
+Reverse the entire array.
+Reverse the first 
+𝑘
+k elements.
+Reverse the remaining 
+𝑛
+−
+𝑘
+n−k elements.
+This rearrangement achieves the desired rotation efficiently.
+Key Insight:
+
+Rotating an array 
+𝑘
+k steps to the right is equivalent to moving the last 
+𝑘
+k elements to the front while maintaining their order.
+Complexity:
+
+Time Complexity: 
+𝑂
+(
+𝑛
+)
+O(n), where 
+𝑛
+n is the size of the array, as reversing the array takes linear time.
+Space Complexity: 
+𝑂
+(
+1
+)
+O(1), since the rotation is performed in-place without extra memory.
+Edge Cases:
+
+𝑘
+=
+0
+k=0: No rotation; the array remains unchanged.
+𝑘
+≥
+𝑛
+k≥n: Rotation repeats after 
+𝑛
+n steps, so use 
+𝑘
+%
+𝑛
+k%n to avoid unnecessary operations.
+Single-element or empty arrays: The array remains unchanged.
+Code with Comments
+cpp
+Copy code
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size(); // Get the size of the array
+        
+        // Handle cases where k >= n by reducing k to k % n
+        k = k % n;
+
+        // Step 1: Reverse the entire array
+        reverse(nums.begin(), nums.end());
+
+        // Step 2: Reverse the first k elements
+        reverse(nums.begin(), nums.begin() + k);
+
+        // Step 3: Reverse the remaining n - k elements
+        reverse(nums.begin() + k, nums.end());
+    }
+};
+Algorithm Explanation
+Input:
+
+Accept a reference to a vector nums and an integer 
+𝑘
+k, the number of steps to rotate.
+Initialization:
+
+Calculate 
+𝑘
+%
+𝑛
+k%n to handle cases where 𝑘≥𝑛
+k≥n, as rotating 
+n times brings the array back to its original state.
+Reverse Approach:
+
+Step 1: Reverse the entire array.
+This makes the last 
+𝑘
+k elements move to the front but in reverse order.
+Step 2: Reverse the first 
+𝑘
+k elements.
+This restores their original order in the rotated position.
+Step 3: Reverse the remaining 
+
+n−k elements.
+This restores the order of the rest of the array.
+In-Place Rotation:
+
+The operation is performed in-place using the reverse function, which swaps elements in a subrange.
+Key Points
+The algorithm leverages the properties of array reversal to achieve rotation efficiently.
+The reverse function is part of the C++ STL and operates in 
+O(n) time.
+Edge Cases Handled 𝑘=0
+k=0: No rotation needed; the array remains unchanged.𝑘≥𝑛
+k≥n: 
+k is reduced to 𝑘%𝑛
+k%n, as rotating n times or multiples of n does not change the array.
+Empty or Single-Element Array: Rotation does not affect the array.
+
